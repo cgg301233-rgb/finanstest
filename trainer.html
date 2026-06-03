@@ -66,7 +66,11 @@
     .modal-card input { width: 100%; padding: 14px; border-radius: 100px; border: 1px solid var(--input-border); font-size: 1rem; margin: 20px 0; background: var(--pane-bg); color: var(--text); }
     .chart-image { max-width:100%; height:auto; border-radius:14px; margin-bottom:20px; border:1px solid var(--chart-border); }
   </style>
-  
+</head>
+<body>
+<div class="app-card" id="app"></div>
+
+<script>
   // Глобальный обработчик ошибок
   window.onerror = function(message, source, lineno, colno, error) {
     alert("Произошла ошибка в приложении. Пожалуйста, перезагрузите страницу.");
@@ -295,13 +299,12 @@
 
         if (type==="cashback") {
             let item=ITEM_NAMES[Math.floor(Math.random()*ITEM_NAMES.length)];
-            // кэшбэк может быть дробным (до сотых)
             let cbPercentArray = [5,10,15,20,25,30,35,40,45,50,55,60,65,70];
-            let cbPercent = cbPercentArray[Math.floor(Math.random()*cbPercentArray.length)]/10; // 0.5 ... 7.0
+            let cbPercent = cbPercentArray[Math.floor(Math.random()*cbPercentArray.length)]/10;
             let [lo,hi]=ITEMS[item];
             let price = randInt(lo, hi);
             if(price>=1500) price=Math.round(price/5)*5;
-            let cash = Math.round(price * cbPercent / 100 * 100) / 100; // округляем до копеек
+            let cash = Math.round(price * cbPercent / 100 * 100) / 100;
             let {name, isMale} = randName();
             return {text:`${name} купил${isMale?'':'а'} ${item} за ${price} руб. Кэшбэк по карте составляет ${cbPercent}%. Сколько рублей вернётся на карту?`, answer:String(cash), options:generateOptions(cash), explanation:`Кэшбэк = ${price} × ${cbPercent}% = ${cash} руб.`, type:"math"};
         }
@@ -327,10 +330,9 @@
         if (type==="installment") {
             let item=ITEM_NAMES[Math.floor(Math.random()*ITEM_NAMES.length)], months=randInt(5,24);
             let [lo,hi]=ITEMS[item];
-            // подбираем цену, кратную месяцам, чтобы ежемесячный платёж был целым
             let minPrice = Math.max(500, lo);
             let price = pickStepValue(minPrice, hi, months);
-            let monthly = price / months; // всегда целое
+            let monthly = price / months;
             return {text:`${capitalize(item)} стоит ${price} руб. Магазин предлагает рассрочку на ${months} месяцев без переплаты. Сколько рублей нужно платить в месяц?`, answer:String(monthly), options:generateOptions(monthly), explanation:`${price} / ${months} = ${monthly} руб./мес.`, type:"math"};
         }
 
@@ -868,7 +870,8 @@
     };
   }
 </script>
-  <footer style="text-align: center; color: #6b7d99; font-size: 0.85rem; padding: 16px 0 8px;">
+
+<footer style="text-align: center; color: #6b7d99; font-size: 0.85rem; padding: 16px 0 8px;">
     © FinTest, 2026 &nbsp;|&nbsp; Версия 0.98
 </footer>
 </body>
