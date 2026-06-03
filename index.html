@@ -28,8 +28,7 @@
             background: var(--bg);
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;   /* ← располагаем элементы вертикально */
             padding: 16px;
             position: relative;
         }
@@ -42,6 +41,7 @@
             box-shadow: var(--shadow);
             padding: 32px 24px;
             text-align: center;
+            margin: auto;             /* ← карточка по центру экрана */
         }
 
         h1 {
@@ -185,6 +185,15 @@
             padding-right: 20px;
         }
 
+        /* Футер */
+        footer {
+            text-align: center;
+            color: #6b7d99;
+            font-size: 0.85rem;
+            padding: 16px 0 8px;
+            margin-top: auto;        /* ← прижимает футер к низу */
+        }
+
         @media (max-width: 400px) {
             .info-popup {
                 width: 220px;
@@ -226,9 +235,13 @@
             </ul>
         </div>
 
-        <!-- Ссылка на тренажёр (теперь trainer.html) -->
         <a href="trainer.html" class="btn">🚀 Перейти к тренажёру</a>
     </div>
+
+    <!-- Футер теперь внутри body, после карточки, прижат к низу -->
+    <footer>
+        © FinTest, 2026 &nbsp;|&nbsp; Версия 0.98
+    </footer>
 
     <script>
         const infoBtn = document.getElementById('infoBtn');
@@ -249,8 +262,5 @@
             }
         });
     </script>
-    <footer style="text-align: center; color: #6b7d99; font-size: 0.85rem; padding: 16px 0 8px;">
-    © FinTest, 2026 &nbsp;|&nbsp; Версия 0.98
-</footer>
 </body>
 </html>
