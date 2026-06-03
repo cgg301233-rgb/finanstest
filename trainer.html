@@ -38,7 +38,7 @@
       --user-text: #2c6e9e;
     }
     * { margin:0; padding:0; box-sizing:border-box; font-family: var(--font); }
-    body { background: var(--bg); min-height: 100vh; padding: 24px 16px; transition: background var(--transition); }
+    body { background: var(--bg); min-height: 100vh; padding: 24px 16px; transition: background var(--transition); display: flex; flex-direction: column; }
     .app-card { max-width: 860px; margin: 0 auto; background: var(--card-bg); border-radius: 40px; box-shadow: var(--shadow); padding: 28px 24px; transition: background var(--transition), box-shadow var(--transition); position: relative; }
     h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #1e2f5e, #2a4b7a); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -0.3px; margin-bottom: 4px; }
     .sub { color: var(--sub); font-weight: 500; margin-bottom: 28px; border-left: 3px solid #2a7faa; padding-left: 12px; }
@@ -66,10 +66,7 @@
     .modal-card input { width: 100%; padding: 14px; border-radius: 100px; border: 1px solid var(--input-border); font-size: 1rem; margin: 20px 0; background: var(--pane-bg); color: var(--text); }
     .chart-image { max-width:100%; height:auto; border-radius:14px; margin-bottom:20px; border:1px solid var(--chart-border); }
   </style>
-</head>
-<body>
-<div class="app-card" id="app"></div>
-<script>
+  
   // Глобальный обработчик ошибок
   window.onerror = function(message, source, lineno, colno, error) {
     alert("Произошла ошибка в приложении. Пожалуйста, перезагрузите страницу.");
